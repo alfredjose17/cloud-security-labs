@@ -5,21 +5,18 @@
 *.tfstate
 *.tfstate.*
 
-# .tfvars files
-*.tfvars
-
-# .tfplan files
-*.tfplan
-
 # Crash log files
 crash.log
 
-# Exclude any files ending in .tf.json
-*.tf.json
+# Exclude .terraform.lock.hcl files
+.terraform.lock.hcl
 
-# Exclude override files as they are usually used to override resources locally and so
-# are not checked in
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+# Exclude tfvars files that are either
+# a) in the root of your configuration directory
+# b) anywhere with their names ending in ".auto.tfvars"
+*.auto.tfvars
+override.tfvars
+
+# If you override variables in a non-root module include the override files
+*/override.tf
+*/override.tf.json
