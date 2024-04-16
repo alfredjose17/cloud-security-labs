@@ -60,7 +60,7 @@ resource "aws_s3_bucket" "lab_bucket" {
 # Upload object to S3 bucket
 resource "aws_s3_bucket_object" "example_object" {
   bucket = aws_s3_bucket.lab_bucket.id
-  key    = "example-file.txt"
+  key    = "index.html"
 
   # Specify the path to the file to upload
   source = "/home/alfredjose17/cloud-security/terraform/lab06-vault/example-file.txt"
