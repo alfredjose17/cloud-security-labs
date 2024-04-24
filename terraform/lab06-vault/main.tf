@@ -66,20 +66,6 @@ resource "aws_s3_bucket_object" "example_object" {
   source = "/home/alfredjose17/cloud-security/terraform/lab06-vault/example-file.txt"
 }
 
-# # Delete IAM policy
-# resource "aws_iam_policy" "delete_lab_policy" {
-#   name        = var.policy_name
-#   description = var.policy_description
-
-#   policy = jsonencode({})
-# }
-
-# # Delete IAM role
-# resource "aws_iam_role" "delete_lab_role" {
-#   name = aws_iam_role.lab_role.name
-#   assume_role_policy = jsonencode({})
-# }
-
 # Define the AWS Lambda function
 resource "aws_lambda_function" "example_lambda" {
   filename      = "lambda_function.py"
@@ -111,7 +97,6 @@ resource "aws_iam_role" "lambda_role" {
   })
 
   # Attach a basic policy granting Lambda execution permissions
-  // Modify this policy based on your specific requirements
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   ]
@@ -150,5 +135,5 @@ resource "aws_api_gateway_integration" "example_integration" {
 resource "aws_api_gateway_deployment" "example_deployment" {
   depends_on = [aws_api_gateway_integration.example_integration]
   rest_api_id = aws_api_gateway_rest_api.example_api.id
-  stage_name  = "dev"  # Specify your desired stage name
+  stage_name  = "dev"
 }
